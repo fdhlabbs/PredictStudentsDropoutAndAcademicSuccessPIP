@@ -41,7 +41,7 @@ from imblearn.over_sampling import SMOTE
 #--------------------------------------------------
 
 # ------------------------- Page Setup -------------------------
-st.set_page_config(page_title="Student Outcome Predictor", layout="wide")
+st.set_page_config(page_title="Student Outcome Predictor v3", layout="wide")
 
 # Add banner
 st.image("img/banner.png", use_container_width=True)
@@ -211,7 +211,8 @@ if submitted:
         #reindex
         preproc_columns = joblib.load("models/model_ann_columns.pkl")
         stud = stud.reindex(columns=preproc_columns, fill_value=0)
-    
+
+        stud = stud.fillna(0)
         #predict
         model_ann = joblib.load("models/model_ann.pkl")
         pred = model_ann.predict(stud)[0]
