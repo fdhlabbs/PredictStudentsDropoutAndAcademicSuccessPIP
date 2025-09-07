@@ -90,7 +90,7 @@ with st.form("input_form"):
     debtor = st.selectbox(inv_conv["debtor"], list(pp.debtor.values()))
     tuitionFeesUpToDate = st.selectbox(inv_conv["tuitionFeesUpToDate"], list(pp.tuitionFeesUpToDate.values()))
     scholarshipHolder = st.selectbox(inv_conv["scholarshipHolder"], list(pp.scholarshipHolder.values()))
-    ageAtEnrollment = st.number_input(inv_conv["ageAtEnrollment"], min_value=15, max_value=60)
+    ageAtEnrollment = st.number_input(inv_conv["ageAtEnrollment"], min_value=15, value =18, max_value=60)
 
     st.divider()
     st.subheader("🏫 1st Sem Info")
@@ -113,9 +113,9 @@ with st.form("input_form"):
 
     st.divider()
     st.subheader("📈 Economy Situation at Enrollment")
-    unemploymentRate = st.number_input(inv_conv["unemploymentRate"], min_value=0.0)
-    inflationRate = st.number_input(inv_conv["inflationRate"], min_value=0.0)
-    gdp = st.number_input(inv_conv["gdp"], min_value=0.0)
+    unemploymentRate = st.number_input(inv_conv["unemploymentRate"], min_value=0.0, max_value=50.0)
+    inflationRate = st.number_input(inv_conv["inflationRate"], min_value=-10.0, value=0.0, max_value=10.0)
+    gdp = st.number_input(inv_conv["gdp"], min_value=-10.0, value=0.0, max_value=10.0)
 
     st.divider()
     submitted = st.form_submit_button("Predict")

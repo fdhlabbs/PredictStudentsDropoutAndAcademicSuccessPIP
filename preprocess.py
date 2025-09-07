@@ -37,6 +37,18 @@ from sklearn.inspection import permutation_importance
 from imblearn.over_sampling import SMOTE
 #--------------------------------------------------
 
+#global constants
+#--------------------------------------------------
+
+#--------------------------------------------------
+
+#load csv
+#--------------------------------------------------
+DF_INIT = pd.read_csv("db/PredictStudentsDropoutAndAcademicSuccess.csv", sep=";")
+DF_USE = DF_INIT.sample(n=10, random_state=42)
+DF = DF_INIT.drop(DF_USE.index)
+#--------------------------------------------------
+
 #data mapping
 #--------------------------------------------------
 # Function to convert col to camelCase
@@ -188,6 +200,7 @@ nationality = {
 
 #motherQualification
 motherQualification = {
+    34: "Unknown",
     1: "Secondary Education - 12th Year of Schooling or Eq.",
     2: "Higher Education - Bachelor's Degree",
     3: "Higher Education - Degree",
@@ -206,7 +219,6 @@ motherQualification = {
     27: "2nd cycle of the general high school course",
     29: "9th Year of Schooling - Not Completed",
     30: "8th year of schooling",
-    34: "Unknown",
     35: "Can't read or write",
     36: "Can read without having a 4th year of schooling",
     37: "Basic education 1st cycle (4th/5th year) or equiv.",
@@ -221,6 +233,7 @@ motherQualification = {
 
 #fatherQualification
 fatherQualification = {
+    34: "Unknown",
     1: "Secondary Education - 12th Year of Schooling or Eq.",
     2: "Higher Education - Bachelor's Degree",
     3: "Higher Education - Degree",
@@ -244,7 +257,6 @@ fatherQualification = {
     30: "8th year of schooling",
     31: "General Course of Administration and Commerce",
     33: "Supplementary Accounting and Administration",
-    34: "Unknown",
     35: "Can't read or write",
     36: "Can read without having a 4th year of schooling",
     37: "Basic education 1st cycle (4th/5th year) or equiv.",
@@ -316,6 +328,7 @@ qualificationOrdinalName = {
 
 #motherOccupation
 motherOccupation = {
+    9: "Unskilled Workers",
     0: "Student",
     1: "Representatives of the Legislative Power and Executive Bodies, Directors, Directors and Executive Managers",
     2: "Specialists in Intellectual and Scientific Activities",
@@ -325,7 +338,6 @@ motherOccupation = {
     6: "Farmers and Skilled Workers in Agriculture, Fisheries and Forestry",
     7: "Skilled Workers in Industry, Construction and Craftsmen",
     8: "Installation and Machine Operators and Assembly Workers",
-    9: "Unskilled Workers",
     10: "Armed Forces Professions",
     90: "Other Situation",
     99: "(blank)",
@@ -352,6 +364,7 @@ motherOccupation = {
 
 #fatherOccupation
 fatherOccupation = {
+    9: "Unskilled Workers",
     0: "Student",
     1: "Representatives of the Legislative Power and Executive Bodies, Directors, Directors and Executive Managers",
     2: "Specialists in Intellectual and Scientific Activities",
@@ -361,7 +374,6 @@ fatherOccupation = {
     6: "Farmers and Skilled Workers in Agriculture, Fisheries and Forestry",
     7: "Skilled Workers in Industry, Construction and Craftsmen",
     8: "Installation and Machine Operators and Assembly Workers",
-    9: "Unskilled Workers",
     10: "Armed Forces Professions",
     90: "Other Situation",
     99: "(blank)",
@@ -476,13 +488,13 @@ occupationOrdinalName = {
 #admissionGrade
 
 #displaced
-displaced = {1: "yes", 0: "no"}
+displaced = {0: "no", 1: "yes"}
 
 #educationalSpecialNeeds
-educationalSpecialNeeds = {1: "yes", 0: "no"}
+educationalSpecialNeeds = {0: "no", 1: "yes"}
 
 #debtor
-debtor = {1: "yes", 0: "no"}
+debtor = {0: "no", 1: "yes"}
 
 #tuitionFeesUpToDate
 tuitionFeesUpToDate = {1: "yes", 0: "no"}
@@ -496,7 +508,7 @@ scholarshipHolder = {1: "yes", 0: "no"}
 #ageAtEnrollment
 
 #international
-international = {1: "yes", 0: "no"}
+international = {0: "no", 1: "yes"}
 
 #curricularUnits1stSemCredited
 #curricularUnits1stSemEnrolled
@@ -519,6 +531,7 @@ international = {1: "yes", 0: "no"}
 #gdp
 
 #econ_to_year
+#((row["unemploymentRate"], row["inflationRate"], row["gdp"]))
 econ_to_year = {
     (10.8, 1.4, 1.74): 2010,
     (13.9, -0.3, 0.79): 2011,
